@@ -5,8 +5,8 @@ Criado para fornecer respostas em JSON, para montagem das telas na aplicação m
 
 - Base em Spring Boot
 - Banco de dados: Postgres
-- Url principal da API Backend: http://votos.api.antoniodbjunior.com.br/api/v1/
-- Url principal da API Frontend para demonstração: http://votos.antoniodbjunior.com.br
+- Serviço online da API Backend: http://votos.api.antoniodbjunior.com.br/api/v1/
+- Serviço online da aplicação fontend na nuvem para demonstração: http://votos.antoniodbjunior.com.br
 
 Observações importantes:
 - Para testes em localhost, altere a propriedade spring.profiles.active=prod para spring.profiles.active=dev, no arquivo application.properties.
