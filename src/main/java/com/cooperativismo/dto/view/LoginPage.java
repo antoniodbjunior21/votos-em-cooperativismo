@@ -2,7 +2,7 @@ package com.cooperativismo.dto.view;
 import com.cooperativismo.dto.view.components.ConfirmButton;
 import com.cooperativismo.dto.view.components.SimpleText;
 import com.cooperativismo.dto.view.pages.FormPage;
-import com.cooperativismo.dto.view.components.NumberInput;
+import com.cooperativismo.dto.view.components.InputNumber;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,7 +14,7 @@ public class LoginPage extends FormPage {
         this.setItens(new ArrayList<>());
 
         this.getItens().add(new SimpleText(descricao));
-        this.getItens().add(new NumberInput("cpf", "Digite seu CPF", null));
+        this.getItens().add(new InputNumber("cpf", "Digite seu CPF", null));
 
         this.setBotaoOK(new ConfirmButton(url, "Acessar", new HashMap<>()));
     }

@@ -39,7 +39,7 @@ public class AssociadoServiceImpl implements AssociadoService {
     }
 
     @Override
-    public void authenticateOrCreateNewAssociado(String cpf) throws CPFInvalidoException{
+    public Associado authenticateOrCreateNewAssociado(String cpf) throws CPFInvalidoException{
 
         if (Utils.isNullOrEmpty(cpf)) {
             throw new CPFInvalidoException();
@@ -48,12 +48,22 @@ public class AssociadoServiceImpl implements AssociadoService {
         Optional<Associado> associado = this.associadoRepository.findByCpf(cpf);
 
         if (associado.isPresent()) {
-            return;
+            return associado.get();
         }
 
         Associado novoAssociado = new Associado();
         novoAssociado.setCpf(cpf);
-        this.associadoRepository.save(novoAssociado);
+        return this.associadoRepository.save(novoAssociado);
+    }
+
+    @Override
+    public Optional<Associado> findByCpf(String cpf) {
+        return this.associadoRepository.findByCpf(cpf);
+    }
+
+    @Override
+    public Optional<Associado> findById(Long id) {
+        return this.associadoRepository.findById(id);
     }
 
     public boolean isAbleToVote(String cpf) throws BusinessException {

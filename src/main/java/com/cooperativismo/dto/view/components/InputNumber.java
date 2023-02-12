@@ -5,13 +5,13 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class NumberInput extends FormItem {
+public class InputNumber extends FormItem {
 
     private String id;
     private String titulo;
     private Integer valor;
 
-    public NumberInput(String id, String titulo, Integer valor) {
+    public InputNumber(String id, String titulo, Integer valor) {
         super(InputType.INPUT_NUMERO);
         this.id = id;
         this.titulo = titulo;
