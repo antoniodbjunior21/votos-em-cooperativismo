@@ -6,10 +6,10 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ViewComponent {
+public class Page {
     public PageType tipo;
 
-    public ViewComponent(PageType tipo) {
+    public Page(PageType tipo) {
         this.tipo = tipo;
     }
 

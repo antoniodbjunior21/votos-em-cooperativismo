@@ -1,6 +1,6 @@
 package com.cooperativismo.dto.view.pages;
 
-import com.cooperativismo.dto.view.components.ViewComponent;
+import com.cooperativismo.dto.view.components.Page;
 import com.cooperativismo.dto.view.components.SelectItem;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -10,7 +10,7 @@ import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class SelectPage extends ViewComponent {
+public class SelectPage extends Page {
 
     private String titulo;
     private List<SelectItem> itens = new ArrayList<>();
