@@ -1,6 +1,6 @@
 package com.cooperativismo.dto.view.components;
 
-public class CancelButtontViewComponent {
+public class CancelButton {
     private String texto;
     private String url;
 

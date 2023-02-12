@@ -2,7 +2,9 @@ package com.cooperativismo.controller;
 
 import com.cooperativismo.dto.LoginDTO;
 import com.cooperativismo.dto.view.LoginPage;
-import com.cooperativismo.dto.view.components.BaseViewComponent;
+import com.cooperativismo.dto.view.MenuPrincipalPage;
+import com.cooperativismo.dto.view.components.ViewComponent;
+import com.cooperativismo.exceptions.CPFInvalidoException;
 import com.cooperativismo.service.AssociadoService;
 import com.cooperativismo.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +32,23 @@ public class ApplicationController {
 	}
 
 	@PostMapping(Constants.AUTHENTICATE_URL)
-	public BaseViewComponent autenticar(@RequestBody LoginDTO login) {
-		this.service.authenticate(login);
-		return null;
+	public ViewComponent autenticar(@RequestBody LoginDTO login, HttpServletRequest request) {
+		String autenticarUrl = Constants.getAuthenticateURL(request);
+		String titulo;
+		String descricao;
+		try {
+			this.service.authenticate(login);
+			return new MenuPrincipalPage();
+		}catch (Exception e){
+			if (e instanceof CPFInvalidoException){
+				titulo = "CPF Inválido";
+				descricao = "Digite um CPF válido para acessar a área de pautas e votações.";
+				return new LoginPage(autenticarUrl, titulo, descricao );
+			}
+			titulo = "Oops";
+			descricao = "Ocorreu um erro desconhecido, o sistema pode estar indisponível temporariamente ou em manutenção." +
+					"Tente novamente mais tarde.";
+			return new LoginPage(autenticarUrl, titulo, descricao);
+		}
 	}
 }

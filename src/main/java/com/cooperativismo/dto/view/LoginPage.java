@@ -1,32 +1,21 @@
 package com.cooperativismo.dto.view;
-import com.cooperativismo.dto.view.components.ConfirmButtontViewComponent;
-import com.cooperativismo.dto.view.components.FormViewComponent;
-import com.cooperativismo.dto.view.components.NumberInputViewComponent;
-import com.cooperativismo.dto.view.components.TextViewComponent;
+import com.cooperativismo.dto.view.components.ConfirmButton;
+import com.cooperativismo.dto.view.components.SimpleText;
+import com.cooperativismo.dto.view.pages.FormPage;
+import com.cooperativismo.dto.view.components.NumberInput;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class LoginPage extends FormViewComponent {
+public class LoginPage extends FormPage {
 
     public LoginPage(String url, String titulo, String descricao) {
-
         this.setTitulo(titulo);
-
-        TextViewComponent text = new TextViewComponent(descricao);
-
-        NumberInputViewComponent numberInput = new NumberInputViewComponent(
-                "cpf",
-                "Digite seu CPF",
-                null
-        );
-
         this.setItens(new ArrayList<>());
-        this.getItens().add(text);
-        this.getItens().add(numberInput);
 
-        ConfirmButtontViewComponent buttonOk = new ConfirmButtontViewComponent(url, "Acessar", new HashMap<>());
+        this.getItens().add(new SimpleText(descricao));
+        this.getItens().add(new NumberInput("cpf", "Digite seu CPF", null));
 
-        this.setBotaoOK(buttonOk);
+        this.setBotaoOK(new ConfirmButton(url, "Acessar", new HashMap<>()));
     }
 }

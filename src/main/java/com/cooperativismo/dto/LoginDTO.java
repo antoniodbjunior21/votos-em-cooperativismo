@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class LoginDTO {
 
-    public String cpf;
+    private String cpf;
 
     public LoginDTO() {
     }

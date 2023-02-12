@@ -2,12 +2,12 @@ package com.cooperativismo.dto.view.components;
 
 import java.util.HashMap;
 
-public class ConfirmButtontViewComponent{
+public class ConfirmButton {
     private String url;
     private String texto;
     private HashMap<String, Object> body = new HashMap<>();
 
-    public ConfirmButtontViewComponent(String url, String texto, HashMap<String, Object> body) {
+    public ConfirmButton(String url, String texto, HashMap<String, Object> body) {
         this.url = url;
         this.texto = texto;
         this.body = body;
