@@ -6,9 +6,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication()
-public class RestServiceApplication {
+public class VotosCooperativismoApplication {
     public static void main(String[] args) {
-        SpringApplication.run(RestServiceApplication.class, args);
+        SpringApplication.run(VotosCooperativismoApplication.class, args);
     }
 
     @Bean
