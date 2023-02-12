@@ -1,4 +1,4 @@
-# votos-em-cooperativismo
+# Sistema de votação em cooperativismo
 Projeto criado para teste técnico.
 
 Criado para fornecer respostas em JSON, para montagem das telas na aplicação mobile. 
