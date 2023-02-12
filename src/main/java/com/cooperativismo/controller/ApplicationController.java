@@ -2,6 +2,7 @@ package com.cooperativismo.controller;
 
 import com.cooperativismo.dto.AuthDTO;
 import com.cooperativismo.dto.PautaDTO;
+import com.cooperativismo.dto.PostDataDTO;
 import com.cooperativismo.dto.view.components.Page;
 import com.cooperativismo.service.PageService;
 import com.cooperativismo.utils.Constantes;
@@ -23,21 +24,26 @@ public class ApplicationController {
 	public Page index() {
 		return this.pageService.getIndexPage();
 	}
+
 	@PostMapping(Constantes.AUTENTICAR_SERVICE_URL)
 	public Page autenticar(@RequestBody AuthDTO authDTO) {
 		return this.pageService.autenticarPor(authDTO.getCpf());
 	}
+	@PostMapping(Constantes.ABRIR_MENU_PRINCIPAL_URL)
+	public Page abrirMenuPrincipal(@RequestBody PostDataDTO postDataDTO) {
+		return this.pageService.abrirMenuPrincipalPor(postDataDTO.associado);
+	}
 	@PostMapping(Constantes.ABRIR_CADASTRO_PAUTA_SERVICE_URL)
-	public Page abrirCadastroPauta(@RequestParam Long associado) {
-		return this.pageService.abrirNovoCadastroPauta(associado);
+	public Page abrirCadastroPauta(@RequestBody PostDataDTO postDataDTO) {
+		return this.pageService.abrirNovoCadastroPauta(postDataDTO.associado);
 	}
 	@PostMapping(Constantes.LISTAR_PAUTAS_SERVICE_URL)
-	public Page listarPautas(@RequestParam Long associado) {
-		return this.pageService.abrirListaPautas(associado);
+	public Page listarPautas(@RequestBody PostDataDTO postDataDTO) {
+		return this.pageService.abrirListaPautas(postDataDTO.associado);
 	}
 	@PostMapping(Constantes.VISUALIZAR_PAUTA_SERVICE_URL)
-	public Page visualizarPauta(@RequestParam Long associado, @RequestParam Long pauta) {
-		return this.pageService.visualizarPauta(associado, pauta);
+	public Page visualizarPauta(@RequestBody PostDataDTO postDataDTO) {
+		return this.pageService.visualizarPauta(postDataDTO.associado, postDataDTO.pauta);
 	}
 	@PostMapping(Constantes.SALVAR_PAUTA_SERVICE_URL)
 	public Page salvarPauta(@RequestBody PautaDTO pautaDTO) {

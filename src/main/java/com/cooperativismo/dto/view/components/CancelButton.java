@@ -1,12 +1,24 @@
 package com.cooperativismo.dto.view.components;
 
+import java.util.HashMap;
+
 public class CancelButton {
     private String url;
     private String texto;
+    private HashMap<String, Object> body = new HashMap<>();
 
-    public CancelButton(String url, String texto) {
+    public CancelButton(String url, String texto, HashMap<String, Object> body) {
         this.url = url;
         this.texto = texto;
+        this.body = body;
+    }
+
+    public HashMap<String, Object> getBody() {
+        return body;
+    }
+
+    public void setBody(HashMap<String, Object> body) {
+        this.body = body;
     }
 
     public String getUrl() {

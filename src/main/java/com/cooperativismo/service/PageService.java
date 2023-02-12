@@ -6,6 +6,7 @@ import com.cooperativismo.dto.view.components.Page;
 public interface PageService {
     Page getIndexPage();
     Page autenticarPor(String cpf);
+    Page abrirMenuPrincipalPor(Long associado);
     Page abrirNovoCadastroPauta(Long associado);
     Page abrirListaPautas(Long associado);
     Page salvarPauta(PautaDTO pautaDTO);

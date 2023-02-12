@@ -20,6 +20,11 @@ public class ApiRouteServiceImpl implements ApiRouteService {
     }
 
     @Override
+    public String getMenuPrincipalUrl() {
+        return getHostUrl() + Constantes.ABRIR_MENU_PRINCIPAL_URL;
+    }
+
+    @Override
     public String getAuthenticationServiceUrl() {
         return getHostUrl() + Constantes.AUTENTICAR_SERVICE_URL;
     }
@@ -30,18 +35,18 @@ public class ApiRouteServiceImpl implements ApiRouteService {
     }
 
     @Override
-    public String getAbrirCadastroPautaServiceUrl(Long associado) {
-        return getHostUrl() + Constantes.ABRIR_CADASTRO_PAUTA_SERVICE_URL + "?associado="+associado;
+    public String getAbrirCadastroPautaServiceUrl() {
+        return getHostUrl() + Constantes.ABRIR_CADASTRO_PAUTA_SERVICE_URL;
     }
 
     @Override
-    public String getListarPautasServiceUrl(Long associado) {
-        return getHostUrl() + Constantes.LISTAR_PAUTAS_SERVICE_URL + "?associado="+associado;
+    public String getListarPautasServiceUrl() {
+        return getHostUrl() + Constantes.LISTAR_PAUTAS_SERVICE_URL;
     }
 
     @Override
-    public String getVisualizarPautaServiceUrl(Long associado, Long pauta) {
-        return getHostUrl() + Constantes.VISUALIZAR_PAUTA_SERVICE_URL+ "?associado="+associado+"&pauta="+pauta;
+    public String getVisualizarPautaServiceUrl() {
+        return getHostUrl() + Constantes.VISUALIZAR_PAUTA_SERVICE_URL;
     }
 
     @Override

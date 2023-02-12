@@ -16,7 +16,8 @@ public class StatusVotacaoPage extends FormPage {
                              Integer votosPositivos,
                              Integer votosNegativos,
                              String listaPautasUrl,
-                             String atualizarUrl) {
+                             String atualizarUrl,
+                             HashMap<String, Object> params) {
         this.setTitulo("Pauta");
         this.setItens(new ArrayList<>());
 
@@ -32,9 +33,7 @@ public class StatusVotacaoPage extends FormPage {
         this.getItens().add(new SimpleText("Votos a favor: " + votosPositivos));
         this.getItens().add(new SimpleText("Votos contra: " + votosNegativos ));
 
-        HashMap<String, Object> params = new HashMap<>();
-
-        this.setBotaoCancelar(new CancelButton(listaPautasUrl, "Voltar"));
-        this.setBotaoOK(new ConfirmButton(atualizarUrl, "Atualizar", params));
+        this.setBotaoCancelar(new CancelButton(listaPautasUrl, "Voltar", params));
+        this.setBotaoOk(new ConfirmButton(atualizarUrl, "Atualizar", params));
     }
 }

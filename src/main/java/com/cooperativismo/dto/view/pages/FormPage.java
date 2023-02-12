@@ -13,7 +13,7 @@ public class FormPage extends Page {
 
     private String titulo;
     private List<FormItem> itens = new ArrayList<>();
-    private ConfirmButton botaoOK;
+    private ConfirmButton botaoOk;
     private CancelButton botaoCancelar;
 
     public FormPage() {
@@ -36,12 +36,12 @@ public class FormPage extends Page {
         this.itens = itens;
     }
 
-    public ConfirmButton getBotaoOK() {
-        return botaoOK;
+    public ConfirmButton getBotaoOk() {
+        return botaoOk;
     }
 
-    public void setBotaoOK(ConfirmButton botaoOK) {
-        this.botaoOK = botaoOK;
+    public void setBotaoOk(ConfirmButton botaoOk) {
+        this.botaoOk = botaoOk;
     }
 
     public CancelButton getBotaoCancelar() {

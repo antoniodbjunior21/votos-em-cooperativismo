@@ -1,7 +1,7 @@
 package com.cooperativismo.service;
 
-import com.cooperativismo.dto.view.components.Page;
 import com.cooperativismo.exceptions.AssociadoJaVotouException;
+import com.cooperativismo.exceptions.PautaVencidaException;
 import com.cooperativismo.model.Associado;
 import com.cooperativismo.model.Pauta;
 import com.cooperativismo.model.Voto;
@@ -9,6 +9,8 @@ import com.cooperativismo.repository.VotoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Optional;
 
 @Service
@@ -24,7 +26,7 @@ public class VotoServiceImpl implements VotoService {
 
 
     @Override
-    public Voto salvarPor(Pauta pauta, Associado associado, Boolean positivo) throws AssociadoJaVotouException {
+    public Voto salvarPor(Pauta pauta, Associado associado, Boolean positivo) throws AssociadoJaVotouException, PautaVencidaException {
 
         validarPossibilidadeVotoPor(associado, pauta);
 
@@ -42,10 +44,25 @@ public class VotoServiceImpl implements VotoService {
     }
 
     @Override
-    public void validarPossibilidadeVotoPor(Associado associado, Pauta pauta) throws AssociadoJaVotouException {
+    public void validarPossibilidadeVotoPor(Associado associado, Pauta pauta) throws AssociadoJaVotouException, PautaVencidaException {
         boolean jaVotou = this.votoRepository.countVotoByAssociadoAndPauta(associado, pauta) > 0;
+
         if (jaVotou){
             throw new AssociadoJaVotouException();
+        }
+
+        Integer validade = pauta.getDuracao();
+        Calendar expiracao = Calendar.getInstance();
+        expiracao.setTime(pauta.getAbertura());
+        expiracao.add(Calendar.MINUTE, validade);
+
+        Calendar agora = Calendar.getInstance();
+
+        Date dtAgora = agora.getTime();
+        Date dtExpiracao = expiracao.getTime();
+
+        if (dtExpiracao.before(dtAgora)){
+            throw new PautaVencidaException();
         }
     }
 

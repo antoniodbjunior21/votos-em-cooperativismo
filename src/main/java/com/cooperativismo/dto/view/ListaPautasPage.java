@@ -7,8 +7,8 @@ import java.util.List;
 
 public class ListaPautasPage extends SelectPage {
 
-    public ListaPautasPage(List<SelectItem> opcoes) {
-        this.setTitulo("Selecione uma pauta");
+    public ListaPautasPage(String titulo, List<SelectItem> opcoes) {
+        this.setTitulo(titulo);
         this.setItens(opcoes);
     }
 }
