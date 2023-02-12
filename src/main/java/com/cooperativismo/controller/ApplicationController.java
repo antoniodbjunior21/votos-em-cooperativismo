@@ -1,37 +1,61 @@
 package com.cooperativismo.controller;
 
-import com.cooperativismo.dto.LoginDTO;
-import com.cooperativismo.dto.view.LoginPage;
-import com.cooperativismo.dto.view.components.BaseViewComponent;
-import com.cooperativismo.service.AssociadoService;
-import com.cooperativismo.utils.Constants;
+import com.cooperativismo.dto.AuthDTO;
+import com.cooperativismo.dto.PautaDTO;
+import com.cooperativismo.dto.PostDataDTO;
+import com.cooperativismo.dto.view.components.Page;
+import com.cooperativismo.service.PageService;
+import com.cooperativismo.utils.Constantes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-
 @RestController
-@RequestMapping(Constants.API_V1_URL)
+@RequestMapping(Constantes.API_V1_URL)
 public class ApplicationController {
 
-	private final AssociadoService service;
+	private final PageService pageService;
 
 	@Autowired
-	public ApplicationController(AssociadoService service) {
-		this.service = service;
+	public ApplicationController(PageService pageService) {
+		this.pageService = pageService;
 	}
 
 	@GetMapping("/")
-	public LoginPage index(HttpServletRequest request) {
-		String autenticarUrl = Constants.getAuthenticateURL(request);
-		String titulo = "Identifique-se";
-		String descricao = "Bem vindo a área de associados. Entre com seu CPF para acessar a área de pautas e votações.";
-		return new LoginPage(autenticarUrl, titulo, descricao );
+	public Page index() {
+		return this.pageService.getIndexPage();
 	}
 
-	@PostMapping(Constants.AUTHENTICATE_URL)
-	public BaseViewComponent autenticar(@RequestBody LoginDTO login) {
-		this.service.authenticate(login);
-		return null;
+	@PostMapping(Constantes.AUTENTICAR_SERVICE_URL)
+	public Page autenticar(@RequestBody AuthDTO authDTO) {
+		return this.pageService.autenticarPor(authDTO.getCpf());
+	}
+	@PostMapping(Constantes.ABRIR_MENU_PRINCIPAL_URL)
+	public Page abrirMenuPrincipal(@RequestBody PostDataDTO postDataDTO) {
+		return this.pageService.abrirMenuPrincipalPor(postDataDTO.associado);
+	}
+	@PostMapping(Constantes.ABRIR_CADASTRO_PAUTA_SERVICE_URL)
+	public Page abrirCadastroPauta(@RequestBody PostDataDTO postDataDTO) {
+		return this.pageService.abrirNovoCadastroPauta(postDataDTO.associado);
+	}
+	@PostMapping(Constantes.LISTAR_PAUTAS_SERVICE_URL)
+	public Page listarPautas(@RequestBody PostDataDTO postDataDTO) {
+		return this.pageService.abrirListaPautas(postDataDTO.associado);
+	}
+	@PostMapping(Constantes.VISUALIZAR_PAUTA_SERVICE_URL)
+	public Page visualizarPauta(@RequestBody PostDataDTO postDataDTO) {
+		return this.pageService.visualizarPauta(postDataDTO.associado, postDataDTO.pauta);
+	}
+	@PostMapping(Constantes.SALVAR_PAUTA_SERVICE_URL)
+	public Page salvarPauta(@RequestBody PautaDTO pautaDTO) {
+		return this.pageService.salvarPauta(pautaDTO);
+	}
+
+	@PostMapping(Constantes.VOTAR_POSITIVO_PAUTA_URL)
+	public Page votarPositivo(@RequestBody PautaDTO pautaDTO) {
+		return this.pageService.votarPositivo(pautaDTO.getId(), pautaDTO.getAssociado());
+	}
+	@PostMapping(Constantes.VOTAR_NEGATIVO_PAUTA_URL)
+	public Page votarNegativo(@RequestBody PautaDTO pautaDTO) {
+		return this.pageService.votarNegativo(pautaDTO.getId(), pautaDTO.getAssociado());
 	}
 }

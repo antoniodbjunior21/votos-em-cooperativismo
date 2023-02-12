@@ -1,5 +1,4 @@
 package com.cooperativismo.model;
-import com.cooperativismo.dto.AssociadoDTO;
 
 import javax.persistence.*;
 
@@ -11,27 +10,9 @@ public class Associado {
     @SequenceGenerator(name = "seq_associado", sequenceName = "seq_associado", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_associado")
     private Long id;
-    private String nome;
     private String cpf;
 
     public Associado() {
-    }
-
-    public Associado(Long id, String nome) {
-        this.id = id;
-        this.nome = nome;
-    }
-
-    public Associado fromResource(AssociadoDTO resource){
-        return new Associado(
-                resource.id,
-                resource.nome
-                );
-    }
-    public AssociadoDTO toResource(){
-        return new AssociadoDTO(
-                this.id,
-                this.nome);
     }
 
     public Long getId() {
@@ -40,14 +21,6 @@ public class Associado {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public String getCpf() {

@@ -3,11 +3,10 @@ package com.cooperativismo.dto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class LoginDTO {
-
+public class AuthDTO {
     public String cpf;
 
-    public LoginDTO() {
+    public AuthDTO() {
     }
 
     public String getCpf() {

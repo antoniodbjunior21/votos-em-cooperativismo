@@ -1,16 +1,18 @@
 package com.cooperativismo.dto.view.components;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class NumberInputViewComponent extends FormItemViewComponent{
-
+public class InputText extends FormItem {
     private String id;
     private String titulo;
-    private Integer valor;
+    private Object valor;
 
-    public NumberInputViewComponent(String id, String titulo, Integer valor) {
-        super(ComponentTypeViewDTO.INPUT_NUMERO);
+    public InputText(String id, String titulo, Object valor) {
+        super(InputType.INPUT_TEXTO);
         this.id = id;
         this.titulo = titulo;
         this.valor = valor;
@@ -32,11 +34,11 @@ public class NumberInputViewComponent extends FormItemViewComponent{
         this.titulo = titulo;
     }
 
-    public Integer getValor() {
+    public Object getValor() {
         return valor;
     }
 
-    public void setValor(Integer valor) {
+    public void setValor(Object valor) {
         this.valor = valor;
     }
 }
