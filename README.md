@@ -13,3 +13,8 @@ Observações importantes:
 - A aplicação frontend para demonstração foi criada para testar as requisições e simular possibilidades de erros de CORS e outros tipos de erros.
 - O serviço de validação remota de CPF requerido como tarefa bonus, parece estar desativado, ou por falta de documentação, não foi especificado o real status desse serviço. O link provido para este serviço é: https://user-info.herokuapp.com/users/{cpf}
 Este serviço foi implementado, porém está comentado, para checagem descomentar as linhas 42 a 47 da classe AssociadoServiceImpl.
+
+Comandos úteis
+- Iniciar a aplicação: mvnw spring-boot:run
+- Iniciar a aplicação para debug remoto (Porta:5005) IDE Intellij IDEA: mvnw spring-boot:run -Dspring-boot.run.jvmArguments="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005"
+
